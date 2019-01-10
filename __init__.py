@@ -26,6 +26,54 @@ class Vector(object):
 
         return isinstance(obj, cls)
 
+    @classmethod
+    def asVector3(cls, obj: "Vector") -> "Vector":
+        """
+        transforms a generic vector object into vcetor3
+        """
+        if not cls.checktype(obj):
+            raise TypeError("cant transform non-vector into vector")
+        elif len(obj) <= 3:
+            return Vector3(*copy(obj.values))
+        else:
+            raise TypeError(
+                "cant generate vector3 object from {}d vector".format(len(obj)))
+
+    @classmethod
+    def asVector2(cls, obj: "Vector") -> "Vector":
+        """
+        transforms a generic vector object into vcetor2
+        """
+        if not cls.checktype(obj):
+            raise TypeError("cant transform non-vector into vector")
+        elif len(obj) <= 2:
+            return Vector2(*copy(obj.values))
+        else:
+            raise TypeError(
+                "cant generate vector2 object from {}d vector".format(len(obj)))
+
+    def Vector3(self) -> "Vector":
+        """
+        transforms self into vcetor3
+        """
+
+        if len(self) <= 3:
+            return Vector3(*copy(self.values))
+        else:
+            raise TypeError(
+                "cant generate vector3 object from {}d vector".format(len(self)))
+
+    def Vector2(self) -> "Vector":
+        """
+        transforms self into vcetor3
+        """
+
+        if len(self) <= 2:
+            return Vector2(*copy(self.values))
+        else:
+            raise TypeError(
+                "cant generate vector2 object from {}d vector".format(len(self)))
+
     def __iter__(self) -> Iterable[float]:
         """
         iterates over the values of the vector.
